@@ -11,8 +11,8 @@ def chat(text, **kw):  #チャット用の関数（ここを書き換える）
   return 'ほ' * n
 
 # アイコンの指定
-BOT_ICON = 'https://2.bp.blogspot.com/-mRJKwyORJkQ/Wn1ZTOBrszI/AAAAAAABKKs/Bg5yjLL9RYwmfUM0pEkBA3Ky3ui0IOZWQCLcBGAs/s800/animal_smile_inu.png'
-YOUR_ICON = 'https://4.bp.blogspot.com/-SC6_6x7MQnc/Wn1ZUkdcPxI/AAAAAAABKK8/qqHVlc8E7lEGsEwJ_J8H6Gp9RvfhTX67wCLcBGAs/s800/animal_smile_neko.png'
+BOT_ICON = 'https://2.bp.blogspot.com/-n2VTrgLXI3E/UT10RVw4FEI/AAAAAAAAOuk/1OYFQz2UWRs/s1600/youkai_kappa.png'
+YOUR_ICON = 'https://cdn-ak.f.st-hatena.com/images/fotolife/P/PositivePaDM3/20191008/20191008105726.jpg'
 
 def run_chat(chat = chat, start='占いするよ', **kw):
 
@@ -252,13 +252,16 @@ def myuranai(input_text):
   if 'name' in frame and 'birthday' not in frame:
     frame['asking'] = 'birthday' # 誕生日をたずねる    
     return 'あなたの誕生日は？'
+  
+  if 'name' in frame and 'birthday' in frame and 'bloodtype' not in frame:
+    frame['asking'] = 'bloodtype' # 血液型をたずねる    
+    return 'あなたの血液型は？'
 
-  if 'name' in frame and 'birthday' in frame:
-    # 占います
-    number = hash(frame['name']+frame['birthday']) % 10
+  if 'name' in frame and 'birthday' in frame and 'bloodtype' in frame:
+    number = hash(frame['name']+frame['birthday']+frame['bloodtype']) % 10
     if number > 5:
-      return 'あなたの運勢は大吉'
-    return 'あなたの運勢は吉'
+      return 'あなたの運勢は大雨'
+    return 'あなたの運勢は雨'
 
   return output_text
 
